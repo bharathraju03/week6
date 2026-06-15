@@ -1,0 +1,69 @@
+Q1. Explain the roles of the Driver, Cluster Manager, and Executor in a Spark application?
+
+Answer: Driver: driver controls the spark applications and it also creates the SparkSession and it also schedules tasks.
+Cluster manager:  it allocates the resources and manages worker nodes.
+
+Executors: it run tasks on worker nodes and also stores data in a memory or in a disk
+
+
+Q2. How does Spark’s Lazy Evaluation strategy improve performance?
+
+Answer: Spark's Lazy Evaluation strategy improve performance . spark delays execution until a action is called . spark builds  A Directed Acyclic Graph of transformations and it helps to optimizes the execution plan, reducing unnecessary computations and improving performances
+
+Q4. What is the difference between CSV and Parquet?
+
+Answer: the difference between CSV and Parquet is that CSV has row-based storage format where parquet has columnar storage format . parquet provides good compression , faster queries and reads only certain columns which are relevant and required . eventually it improves performance.
+
+
+Q7. How does Spark use the Lineage Graph (DAG) for fault tolerance?
+
+Answer: spark maintains the lineage graph which records all transformations . if any node fails instead of reloading the whole dataset spark can recompute the lost data using lineage information.
+
+Q9. Explain Predicate Pushdown in Parquet.
+
+Answer: it helps the spark to apply filter conditions while reading parquet files. only same data or matched data is loaded into memory .
+
+
+Q11. What is the difference between Transformations and Actions?
+
+Answer:
+
+Transformations:
+
+Creates anew dataframe.
+Executed slowly and lazily.
+
+Examples:
+
+filter()
+select()
+
+Actions:
+
+Trigger execution and return results.
+
+Examples:
+
+show()
+collect()
+
+
+Q13. Difference between Client Mode and Cluster Mode?
+
+Answer:
+
+Client Mode:
+
+1.Here Driver runs on the local machine.
+2.It is Suitable for development and testing.
+
+Cluster Mode:
+
+1. Here Driver runs inside the cluster.
+2. It is Suitable for production environments and large-scale processing.
+
+
+Q15. Why is .show(5) safer than .collect() on a multi-terabyte dataset?
+
+Answer:
+.show(5) displays only a few rows, minimizes memory usage. .collect() loads the whole dataset into driver memory, which can cause memory overflow and application failure for large datasets.
